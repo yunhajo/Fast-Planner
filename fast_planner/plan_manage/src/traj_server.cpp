@@ -30,8 +30,9 @@
 #include "std_msgs/Empty.h"
 #include "visualization_msgs/Marker.h"
 #include <ros/ros.h>
+#include "std_msgs/Float32MultiArray.h"
 
-ros::Publisher cmd_vis_pub, pos_cmd_pub, traj_pub;
+ros::Publisher cmd_vis_pub, pos_cmd_pub, traj_pub, pos_vel_pub;
 
 nav_msgs::Odometry odom;
 
@@ -266,6 +267,10 @@ void cmdCallback(const ros::TimerEvent& e) {
 
   pos_cmd_pub.publish(cmd);
 
+  auto message = std_msgs::Float32MultiArray();
+  message.data = {pos(0), pos(1), pos(2), yaw, vel(0), vel(1), vel(2), yawdot};  
+  pos_vel_pub.publish(message);
+
   // draw cmd
 
   // drawCmd(pos, vel, 0, Eigen::Vector4d(0, 1, 0, 1));
@@ -292,6 +297,7 @@ int main(int argc, char** argv) {
   cmd_vis_pub = node.advertise<visualization_msgs::Marker>("planning/position_cmd_vis", 10);
   pos_cmd_pub = node.advertise<quadrotor_msgs::PositionCommand>("/position_cmd", 50);
   traj_pub = node.advertise<visualization_msgs::Marker>("planning/travel_traj", 10);
+  pos_vel_pub = node.advertise<std_msgs::Float32MultiArray>("/pos_vel_cmd", 50);
 
   ros::Timer cmd_timer = node.createTimer(ros::Duration(0.01), cmdCallback);
   ros::Timer vis_timer = node.createTimer(ros::Duration(0.25), visCallback);
