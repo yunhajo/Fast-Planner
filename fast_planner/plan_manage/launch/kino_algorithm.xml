@@ -5,7 +5,7 @@
 
   <arg name="odometry_topic"/>
   <arg name="camera_pose_topic"/>
-  <arg name="original_pose_topic"/>
+  <!-- <arg name="original_pose_topic"/> -->
   <arg name="depth_topic"/>
   <arg name="cloud_topic"/>
 
@@ -36,7 +36,7 @@
     <remap from="/sdf_map/odom" to="$(arg odometry_topic)"/>
     <remap from="/sdf_map/cloud" to="$(arg cloud_topic)"/>
     <remap from = "/sdf_map/pose"   to = "$(arg camera_pose_topic)"/> 
-    <remap from = "/sdf_map/orig_pose"   to = "$(arg original_pose_topic)"/> 
+    <!-- <remap from = "/sdf_map/orig_pose"   to = "$(arg original_pose_topic)"/>  -->
     <remap from = "/sdf_map/depth" to = "$(arg depth_topic)"/>
 
     <!-- replanning method -->

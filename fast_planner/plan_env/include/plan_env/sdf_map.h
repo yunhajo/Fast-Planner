@@ -272,7 +272,7 @@ private:
   ros::NodeHandle node_;
   shared_ptr<message_filters::Subscriber<sensor_msgs::Image>> depth_sub_;
   shared_ptr<message_filters::Subscriber<geometry_msgs::PoseStamped>> pose_sub_;
-  shared_ptr<message_filters::Subscriber<geometry_msgs::PoseStamped>> orig_pose_sub_;
+  // shared_ptr<message_filters::Subscriber<geometry_msgs::PoseStamped>> orig_pose_sub_;
   shared_ptr<message_filters::Subscriber<nav_msgs::Odometry>> odom_sub_;
   SynchronizerImagePose sync_image_pose_;
   SynchronizerImageOdom sync_image_odom_;
