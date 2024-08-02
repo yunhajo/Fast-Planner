@@ -5,6 +5,7 @@
 
   <arg name="odometry_topic"/>
   <arg name="camera_pose_topic"/>
+  <arg name="original_pose_topic"/>
   <arg name="depth_topic"/>
   <arg name="cloud_topic"/>
 
@@ -35,6 +36,7 @@
     <remap from="/sdf_map/odom" to="$(arg odometry_topic)"/>
     <remap from="/sdf_map/cloud" to="$(arg cloud_topic)"/>
     <remap from = "/sdf_map/pose"   to = "$(arg camera_pose_topic)"/> 
+    <remap from = "/sdf_map/orig_pose"   to = "$(arg original_pose_topic)"/> 
     <remap from = "/sdf_map/depth" to = "$(arg depth_topic)"/>
 
     <!-- replanning method -->
@@ -78,7 +80,7 @@
     <param name="sdf_map/depth_filter_maxdist"   value="5.0"/>
     <param name="sdf_map/depth_filter_mindist"   value="0.2"/>
     <param name="sdf_map/depth_filter_margin"    value="2"/>
-    <param name="sdf_map/k_depth_scaling_factor" value="1000.0"/>
+    <param name="sdf_map/k_depth_scaling_factor" value="3431.25"/>
     <param name="sdf_map/skip_pixel" value="2"/>
     <!-- local fusion -->
     <param name="sdf_map/p_hit"  value="0.65"/>
@@ -100,7 +102,7 @@
   <!-- planner manager -->
     <param name="manager/max_vel" value="$(arg max_vel)" type="double"/>
     <param name="manager/max_acc" value="$(arg max_acc)" type="double"/>
-    <param name="manager/max_jerk" value="4" type="double"/>
+    <param name="manager/max_jerk" value="2" type="double"/>
     <param name="manager/dynamic_environment" value="0" type="int"/>
     <param name="manager/local_segment_length" value="6.0" type="double"/>
     <param name="manager/clearance_threshold" value="0.2" type="double"/>

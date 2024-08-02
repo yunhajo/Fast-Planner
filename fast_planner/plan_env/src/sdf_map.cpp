@@ -133,6 +133,8 @@ void SDFMap::initMap(ros::NodeHandle& nh) {
   if (mp_.pose_type_ == POSE_STAMPED) {
     pose_sub_.reset(
         new message_filters::Subscriber<geometry_msgs::PoseStamped>(node_, "/sdf_map/pose", 25));
+    orig_pose_sub_.reset(
+        new message_filters::Subscriber<geometry_msgs::PoseStamped>(node_, "/sdf_map/orig_pose", 25));
 
     sync_image_pose_.reset(new message_filters::Synchronizer<SyncPolicyImagePose>(
         SyncPolicyImagePose(100), *depth_sub_, *pose_sub_));
